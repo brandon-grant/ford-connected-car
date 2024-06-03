@@ -1,59 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ford Connected Car API</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+    <script
+      data-name="BMC-Widget"
+      data-cfasync="false"
+      src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+      data-id="brandong"
+      data-description="Support me on Buy me a coffee!"
+      data-message=""
+      data-color="#ff4081"
+      data-position="Right"
+      data-x_margin="18"
+      data-y_margin="18"
+    ></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-        code {
-            background: #eaeaea;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        pre {
-            text-align: left;
-            background: #f8f8f8;
-            padding: 10px;
-            border-radius: 5px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #121212;
+        color: #ffffff;
+      }
+      .container {
+        text-align: center;
+        padding: 40px 20px;
+        background: #1e1e1e;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        margin: 20px;
+        width: 90%;
+        max-width: 800px;
+        border-radius: 10px;
+      }
+      h1 {
+        color: #ffffff;
+        margin-bottom: 20px;
+      }
+      p {
+        color: #b0b0b0;
+        line-height: 1.6;
+      }
+      code {
+        background: #333333;
+        padding: 2px 4px;
+        border-radius: 4px;
+        color: #ff4081;
+      }
+      pre {
+        text-align: left;
+        background: #333333;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+        border-left: 4px solid #ff4081;
+        margin-top: 20px;
+      }
+      .logo {
+        width: 100px;
+        margin-bottom: 20px;
+      }
+      .discord-embed {
+        margin-top: 20px;
+      }
+      .highlight {
+        color: #ff4081;
+      }
+      .auth-section,
+      .henrylink-section {
+        margin-top: 40px;
+      }
+      a {
+        color: #ff4081;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Ford Connected Car API</h1>
-        <p>Welcome to the Ford Connected Car API!</p>
-        <p>You can consume this API using the <code>/auth</code> endpoint to retrieve an access token from Ford's API.</p>
-        <p>To authenticate, send a POST request to the <code>/auth</code> endpoint with your <strong>username</strong> and <strong>password</strong> in the body as JSON.</p>
-        <p>Example:</p>
-        <pre><code>POST /auth
+  </head>
+  <body>
+    <div class="container auth-section">
+      <h1>Ford Connected Car API</h1>
+      <p>
+        Welcome to the <span class="highlight">Ford Connected Car API</span>!
+      </p>
+      <p>
+        You can consume this API using the <code>/auth</code> endpoint to
+        retrieve an access token from Ford's API.
+      </p>
+      <p>
+        To authenticate, send a POST request to the <code>/auth</code> endpoint
+        with your <strong>username</strong> and <strong>password</strong> in the
+        body as JSON.
+      </p>
+      <pre><code>POST /auth
 Content-Type: application/json
 
 {
     "username": "your-email@example.com",
     "password": "your-password"
 }</code></pre>
+      <p>
+        For more details, visit the
+        <a
+          href="https://github.com/brandon-grant/ford-connected-car"
+          target="_blank"
+          >GitHub repository</a
+        >.
+      </p>
     </div>
-</body>
+    <div class="container henrylink-section">
+      <img
+        src="./images/henrylink-logo.png"
+        alt="HenryLink Logo"
+        class="logo"
+      />
+      <h1>HenryLink iOS Application</h1>
+      <p>
+        We're also working on an iOS application called
+        <span class="highlight">HenryLink</span> that provides built-in Siri
+        Shortcuts and makes use of other iOS features like widgets, Live
+        Activities, and the Dynamic Island.
+      </p>
+      <p>Stay up-to-date by joining the HenryLink Discord server:</p>
+      <div class="discord-embed">
+        <iframe
+          src="https://discord.com/widget?id=1172642880846844075&theme=dark"
+          width="350"
+          height="500"
+          allowtransparency="true"
+          frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        ></iframe>
+      </div>
+    </div>
+  </body>
 </html>
