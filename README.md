@@ -31,10 +31,6 @@ This repository contains the implementation for handling the OAuth flow to retri
     yarn install
     ```
 
-3. Set up environment variables:
-    - Create a `.env` file in the root directory.
-    - Add the required environment variables (e.g., Ford API credentials).
-
 ### Usage
 
 1. Deploy to Firebase:
