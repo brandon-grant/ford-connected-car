@@ -190,7 +190,7 @@ export class OAuth2Client {
         await page.setViewport({ width: 1200, height: 720 });
 
         try {
-            await page.waitForNetworkIdle({ idleTime: 2000, timeout: 60000 });
+            await page.waitForNetworkIdle({ idleTime: Math.random() * 2000, timeout: 60000 });
         } catch (error) {
             functions.logger.error('Error waiting for network idle:', error);
             await browser.close();
