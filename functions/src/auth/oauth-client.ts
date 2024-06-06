@@ -20,6 +20,9 @@ export class OAuth2Client {
     private locale = 'en-US';
     private countryCode = 'USA';
     private applicationId = '71A3AD0A-CF46-4CCF-B473-FC7FE5BC4592';
+    private proxyHost = process.env.PROXY_HOST || '';
+    private proxyUsername = process.env.PROXY_USERNAME || '';
+    private proxyPassword = process.env.PROXY_PASSWORD || '';
 
     constructor(auth: AuthInterface) {
         this.username = auth.username;
@@ -121,7 +124,7 @@ export class OAuth2Client {
                         'User-Agent': 'okhttp/4.11.0',
                         'Accept-Encoding': 'gzip',
                         'X-Dynatrace': 'NA=NA',
-                    },
+                    }
                 }
             );
 
@@ -141,7 +144,8 @@ export class OAuth2Client {
                     '--no-sandbox',
                     '--disable-blink-features=AutomationControlled',
                     '--disable-web-security',
-                    '--allow-running-insecure-content'
+                    '--allow-running-insecure-content',
+                    `--proxy-server=${this.proxyHost}` // Set the proxy server for Puppeteer
                 ],
                 defaultViewport: chromium.defaultViewport,
                 executablePath: await chromium.executablePath,
@@ -157,6 +161,12 @@ export class OAuth2Client {
         const authorizedCodePromise = new Promise<string>(r => (authorizedCodeResolve = r));
 
         const page = await browser.newPage();
+
+        // Set up proxy authentication
+        await page.authenticate({
+            username: this.proxyUsername,
+            password: this.proxyPassword
+        });
 
         page.on('response', async response => {
             if (response.status() === 302 && response.headers()['location']?.includes('fordapp://userauthorized/?code=')) {
@@ -187,10 +197,8 @@ export class OAuth2Client {
             throw new Error('Error navigating to URL');
         }
 
-        await page.setViewport({ width: 1200, height: 720 });
-
         try {
-            await page.waitForNetworkIdle({ idleTime: Math.random() * 2000, timeout: 60000 });
+            await page.waitForNetworkIdle({ idleTime: Math.random() * 10000, timeout: 60000 });
         } catch (error) {
             functions.logger.error('Error waiting for network idle:', error);
             await browser.close();
@@ -207,10 +215,10 @@ export class OAuth2Client {
                 throw new Error('Username or password field not found');
             }
 
-            await usernameField.type(this.username, { delay: Math.random() * 500 });
-            await new Promise(r => setTimeout(r, Math.random() * 1000));
-            await passwordField.type(this.password, { delay: Math.random() * 500 });
-            await new Promise(r => setTimeout(r, Math.random() * 1000));
+            await usernameField.type(this.username, { delay: Math.random() * 1000 });
+            await new Promise(r => setTimeout(r, Math.random() * 10000));
+            await passwordField.type(this.password, { delay: Math.random() * 1000 });
+            await new Promise(r => setTimeout(r, Math.random() * 10000));
 
             const submitButton = await page.$('form#localAccountForm [type=submit]');
             if (!submitButton) {

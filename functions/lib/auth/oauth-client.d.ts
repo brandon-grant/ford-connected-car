@@ -11,6 +11,9 @@ export declare class OAuth2Client {
     private locale;
     private countryCode;
     private applicationId;
+    private proxyHost;
+    private proxyUsername;
+    private proxyPassword;
     constructor(auth: AuthInterface);
     /**
      * Retrieves an OAuth token from Ford's API.

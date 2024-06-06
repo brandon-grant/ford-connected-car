@@ -1,10 +1,12 @@
 import * as admin from 'firebase-admin';
+import * as dotenv from 'dotenv';
 import express from 'express';
 import { AuthInterface, OAuth2Client } from './auth/oauth-client';
 import { logger, runWith } from 'firebase-functions';
 import { onRequest } from 'firebase-functions/v2/https';
 import { encrypt, decrypt } from './helpers/crypto-helper';
 
+dotenv.config();
 admin.initializeApp();
 const db = admin.firestore();
 
